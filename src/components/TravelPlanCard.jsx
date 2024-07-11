@@ -1,5 +1,6 @@
-import { CiHeart } from "react-icons/ci";
+import { FaHeart, FaHeartBroken } from "react-icons/fa";
 import PlanCardPart from "./PlanCardPart";
+import { useState } from "react";
 
 const TravelPlanCard = ({
   handleDelete,
@@ -13,6 +14,7 @@ const TravelPlanCard = ({
   totalCost,
   parts,
 }) => {
+  const [favourited, setFavourited] = useState(false);
   return (
     <div className="card">
       <img className="card__image" src={image} alt={destination} />
@@ -41,11 +43,11 @@ const TravelPlanCard = ({
             Delete
           </button>
           <button
-            onClick={() => handleFavourite(id)}
+            onClick={() => (handleFavourite(id), setFavourited(!favourited))}
             type="button"
             className="card__button"
           >
-            <CiHeart />
+            {favourited ? <FaHeartBroken /> : <FaHeart />}
           </button>
         </div>
       </div>

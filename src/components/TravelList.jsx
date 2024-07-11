@@ -1,7 +1,6 @@
-//import { useState } from "react";
 import { useState } from "react";
 import data from "../assets/travel-plans.json";
-import TravelListItem from "./TravelPlanCard";
+import TravelPlanCard from "./TravelPlanCard";
 
 const TravelList = () => {
   const [travels, setTravels] = useState(data);
@@ -16,9 +15,9 @@ const TravelList = () => {
       : setFavourite([...favourite, travel]);
   };
   return (
-    <div>
+    <>
       {travels.map((item) => (
-        <TravelListItem
+        <TravelPlanCard
           key={item.id}
           handleDelete={handleDelete}
           handleFavourite={handleFavourite}
@@ -26,19 +25,19 @@ const TravelList = () => {
         />
       ))}
       {favourite.length > 0 && (
-        <div>
+        <>
           <h2 className="card__heading">Favourite Travel Plans</h2>
           {favourite.map((item) => (
-            <TravelListItem
+            <TravelPlanCard
               key={item.id}
               handleDelete={handleDelete}
               handleFavourite={handleFavourite}
               {...item}
             />
           ))}
-        </div>
+        </>
       )}
-    </div>
+    </>
   );
 };
 
